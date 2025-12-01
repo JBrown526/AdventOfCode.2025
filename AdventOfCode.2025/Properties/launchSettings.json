@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "AdventOfCode.2025 Day/Part": {
+      "commandName": "Project",
+      "commandLineArgs": "-d 1 -p 1"
+    }
+  }
+}
