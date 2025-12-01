@@ -17,11 +17,11 @@ public class Day1Solver : IAoCSolver
         IEnumerable<Instruction> instructions = lines.Select(Instruction.Parse);
 
         int zeroes = 0;
-        int position = 50;
+        Dial dial = new();
         foreach (Instruction instruction in instructions)
         {
-            position += instruction.Direction * instruction.Value;
-            if (position % 100 == 0)
+            dial.Move(instruction);
+            if (dial.DialPosition == 0)
             {
                 zeroes++;
             }
@@ -32,21 +32,40 @@ public class Day1Solver : IAoCSolver
 
     public string Part2()
     {
-        return "D1P2";
-    }
+        IEnumerable<string> lines = _fileProvider.GetFile(Day);
+        IEnumerable<Instruction> instructions = lines.Select(Instruction.Parse);
 
-    private record struct Instruction(int Direction, int Value)
-    {
-        public static Instruction Parse(string line)
+        int zeroes = 0;
+        Dial dial = new();
+        foreach (Instruction instruction in instructions)
         {
-            int direction = line[0] switch
+            int oldDialPosition = dial.DialPosition;
+            dial.Move(instruction);
+            int newDialPosition = dial.DialPosition;
+
+            Console.WriteLine("Position: {0}, Zeroes: {1}", dial.DialPosition, zeroes);
+
+            // Number of full turns
+            zeroes += instruction.Value / 100;
+
+            if (oldDialPosition == 0)
             {
-                'L' => -1,
-                'R' => 1,
-                _ => throw new ArgumentOutOfRangeException(nameof(line), line, "Line should start with 'L' or 'R'"),
-            };
-            int value = int.Parse(line[1..]);
-            return new Instruction(direction, value);
+                continue;
+            }
+
+            // If we turn right and the dial position is less than the old one, then we've passed 0
+            if (instruction.Direction is Direction.R && newDialPosition < oldDialPosition)
+            {
+                zeroes++;
+            }
+
+            // If we turn left and the dial position is greater than the old one, then we've passed 0
+            if (instruction.Direction is Direction.L && newDialPosition > oldDialPosition)
+            {
+                zeroes++;
+            }
         }
+
+        return zeroes.ToString();
     }
 }
