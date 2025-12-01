@@ -4,6 +4,7 @@ public class FileProvider : IFileProvider
 {
     public IEnumerable<string> GetFile(int day)
     {
-        return File.ReadLines(Path.Combine("inputs", $"day{day:N2}.txt"));
+        string path = Path.Combine("AdventOfCode.2025", "inputs", $"day{day:D2}.txt");
+        return File.ReadLines(path);
     }
 }
