@@ -13,7 +13,21 @@ public class Day1Solver : IAoCSolver
 
     public string Part1()
     {
-        return "D1P1";
+        IEnumerable<string> lines = _fileProvider.GetFile(Day);
+        IEnumerable<Instruction> instructions = lines.Select(Instruction.Parse);
+
+        int zeroes = 0;
+        int position = 50;
+        foreach (Instruction instruction in instructions)
+        {
+            position += instruction.Direction * instruction.Value;
+            if (position % 100 == 0)
+            {
+                zeroes++;
+            }
+        }
+
+        return zeroes.ToString();
     }
 
     public string Part2()
