@@ -42,4 +42,19 @@ public class Day2Tests
 
         solver.Part1().Should().Be(expected);
     }
+
+    [Theory]
+    [InlineData("33", "11-22")]
+    [InlineData("2121212121", "2121212118-2121212124")]
+    [InlineData("4174379265", "11-22", "95-115", "998-1012", "1188511880-1188511890", "222220-222224",
+        "1698522-1698528", "446443-446449", "38593856-38593862", "565653-565659", "824824821-824824827",
+        "2121212118-2121212124")]
+    public void Part2(string expected, params string[] inputs)
+    {
+        _dataProviderMock.Setup(dp => dp.GetData(2)).Returns(inputs);
+
+        Day2Solver solver = new(_dataProviderMock.Object);
+
+        solver.Part2().Should().Be(expected);
+    }
 }
