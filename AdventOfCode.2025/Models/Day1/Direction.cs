@@ -1,4 +1,4 @@
-namespace AdventOfCode2025.Solvers;
+namespace AdventOfCode2025.Models.Day1;
 
 public enum Direction
 {

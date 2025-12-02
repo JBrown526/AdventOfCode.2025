@@ -1,3 +1,5 @@
+using AdventOfCode2025.Models.Day1;
+
 namespace AdventOfCode2025.Solvers;
 
 public class Day1Solver : IAoCSolver
@@ -21,7 +23,7 @@ public class Day1Solver : IAoCSolver
         foreach (Instruction instruction in instructions)
         {
             dial.Move(instruction);
-            if (dial.DialPosition == 0)
+            if (dial.Position == 0)
             {
                 zeroes++;
             }
@@ -39,30 +41,44 @@ public class Day1Solver : IAoCSolver
         Dial dial = new();
         foreach (Instruction instruction in instructions)
         {
-            int oldDialPosition = dial.DialPosition;
+            int oldDialPosition = dial.Position;
             dial.Move(instruction);
-            int newDialPosition = dial.DialPosition;
+            int newDialPosition = dial.Position;
 
-            Console.WriteLine("Position: {0}, Zeroes: {1}", dial.DialPosition, zeroes);
+            int fullTurns = instruction.Value / 100;
 
-            // Number of full turns
-            zeroes += instruction.Value / 100;
-
-            if (oldDialPosition == 0)
+            if (instruction.Direction is Direction.R)
             {
+                zeroes += fullTurns;
+
+                // Check if we wrapped around
+                if (newDialPosition < oldDialPosition)
+                {
+                    zeroes++;
+                }
+
                 continue;
             }
 
-            // If we turn right and the dial position is less than the old one, then we've passed 0
-            if (instruction.Direction is Direction.R && newDialPosition < oldDialPosition)
+            if (instruction.Direction is Direction.L)
             {
-                zeroes++;
-            }
+                // If we're at zero, only need to count full turns
+                if (oldDialPosition == 0)
+                {
+                    zeroes += fullTurns;
+                    continue;
+                }
 
-            // If we turn left and the dial position is greater than the old one, then we've passed 0
-            if (instruction.Direction is Direction.L && newDialPosition > oldDialPosition)
-            {
-                zeroes++;
+                // We would wrap around
+                if (instruction.Value > oldDialPosition)
+                {
+                    zeroes += ((instruction.Value - oldDialPosition - 1) / 100) + 1;
+                }
+
+                if (newDialPosition == 0)
+                {
+                    zeroes++;
+                }
             }
         }
 

@@ -1,13 +1,13 @@
 using System.Diagnostics;
 
-namespace AdventOfCode2025.Solvers;
+namespace AdventOfCode2025.Models.Day1;
 
-[DebuggerDisplay("Position = {DialPosition}")]
+[DebuggerDisplay("Position = {Position}")]
 public class Dial
 {
     private int _value = 50;
 
-    public int DialPosition
+    public int Position
     {
         get
         {
