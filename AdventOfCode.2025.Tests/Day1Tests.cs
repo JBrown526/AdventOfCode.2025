@@ -6,7 +6,7 @@ using Moq;
 
 namespace AdventOfCode2025.Tests;
 
-public class Day1SolverTests
+public class Day1Tests
 {
     private readonly Mock<IDataProvider> _fileHelperMock = new();
 
@@ -19,7 +19,7 @@ public class Day1SolverTests
         _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
-        Day1Solver solver = new(_fileHelperMock.Object);
+        Day1 solver = new(_fileHelperMock.Object);
 
         solver.Part1().Should().Be(expected);
     }
@@ -37,7 +37,7 @@ public class Day1SolverTests
         _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
-        Day1Solver solver = new(_fileHelperMock.Object);
+        Day1 solver = new(_fileHelperMock.Object);
 
         solver.Part2().Should().Be(expected);
     }

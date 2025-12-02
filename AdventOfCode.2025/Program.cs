@@ -10,10 +10,15 @@ public static class Program
     public static void Main(string[] args)
     {
         IServiceCollection serviceCollection = new ServiceCollection();
+
+        // Register data providers
         serviceCollection.AddKeyedSingleton<IDataProvider, LineOnlyDataProvider>(DataProviderKind.LineOnly);
         serviceCollection.AddKeyedSingleton<IDataProvider, CommaSeparatedLineDataProvider>(
             DataProviderKind.CommaSeparatedLine);
-        serviceCollection.AddKeyedSingleton<IAoCSolver, Day1Solver>(01);
+
+        // Register solvers
+        serviceCollection.AddKeyedSingleton<IAoCSolver, Day1>(01);
+        serviceCollection.AddKeyedSingleton<IAoCSolver, Day2Solver>(02);
 
         ServiceProvider provider = serviceCollection.BuildServiceProvider();
 
