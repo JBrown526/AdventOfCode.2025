@@ -1,6 +1,6 @@
 namespace AdventOfCode2025.DataProviders;
 
-public class LineBasedDataProvider : DataProviderBase
+public class LineOnlyDataProvider : DataProviderBase
 {
     public override IEnumerable<string> GetData(int day)
     {

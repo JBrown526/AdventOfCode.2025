@@ -2,6 +2,6 @@
 
 public enum DataProviderKind
 {
-    LineBased,
-    CommaSeparated,
+    LineOnly,
+    CommaSeparatedLine,
 }

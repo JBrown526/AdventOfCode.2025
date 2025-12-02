@@ -10,7 +10,7 @@ public class Day1Solver : IAoCSolver
 
     public int Day => 1;
 
-    public Day1Solver([FromKeyedServices(DataProviderKind.LineBased)] IDataProvider dataProvider)
+    public Day1Solver([FromKeyedServices(DataProviderKind.LineOnly)] IDataProvider dataProvider)
     {
         _dataProvider = dataProvider;
     }
