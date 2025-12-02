@@ -19,7 +19,7 @@ public class Day1Tests
         _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
-        Day1 solver = new(_fileHelperMock.Object);
+        Day1Solver solver = new(_fileHelperMock.Object);
 
         solver.Part1().Should().Be(expected);
     }
@@ -37,7 +37,7 @@ public class Day1Tests
         _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
-        Day1 solver = new(_fileHelperMock.Object);
+        Day1Solver solver = new(_fileHelperMock.Object);
 
         solver.Part2().Should().Be(expected);
     }

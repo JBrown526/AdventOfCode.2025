@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
 
-public class Day1 : IAoCSolver
+public class Day1Solver : IAoCSolver
 {
     private readonly IDataProvider _dataProvider;
 
     public int Day => 1;
 
-    public Day1([FromKeyedServices(DataProviderKind.LineOnly)] IDataProvider dataProvider)
+    public Day1Solver([FromKeyedServices(DataProviderKind.LineOnly)] IDataProvider dataProvider)
     {
         _dataProvider = dataProvider;
     }

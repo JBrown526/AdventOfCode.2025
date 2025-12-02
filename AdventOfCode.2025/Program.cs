@@ -17,7 +17,7 @@ public static class Program
             DataProviderKind.CommaSeparatedLine);
 
         // Register solvers
-        serviceCollection.AddKeyedSingleton<IAoCSolver, Day1>(01);
+        serviceCollection.AddKeyedSingleton<IAoCSolver, Day1Solver>(01);
         serviceCollection.AddKeyedSingleton<IAoCSolver, Day2Solver>(02);
 
         ServiceProvider provider = serviceCollection.BuildServiceProvider();
