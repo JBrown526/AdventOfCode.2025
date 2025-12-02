@@ -8,7 +8,7 @@ namespace AdventOfCode2025.Tests;
 
 public class Day1Tests
 {
-    private readonly Mock<IDataProvider> _fileHelperMock = new();
+    private readonly Mock<IDataProvider> _dataProviderMock = new();
 
     [Theory]
     [InlineData("0", "L1", "R2")]
@@ -16,10 +16,9 @@ public class Day1Tests
     [InlineData("2", "R50", "R100")]
     public void Part1(string expected, params string[] turns)
     {
-        _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
-            .Returns(turns);
+        _dataProviderMock.Setup(fh => fh.GetData(1)).Returns(turns);
 
-        Day1Solver solver = new(_fileHelperMock.Object);
+        Day1Solver solver = new(_dataProviderMock.Object);
 
         solver.Part1().Should().Be(expected);
     }
@@ -34,10 +33,9 @@ public class Day1Tests
     [InlineData("1", "R50")]
     public void Part2(string expected, params string[] turns)
     {
-        _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
-            .Returns(turns);
+        _dataProviderMock.Setup(fh => fh.GetData(1)).Returns(turns);
 
-        Day1Solver solver = new(_fileHelperMock.Object);
+        Day1Solver solver = new(_dataProviderMock.Object);
 
         solver.Part2().Should().Be(expected);
     }

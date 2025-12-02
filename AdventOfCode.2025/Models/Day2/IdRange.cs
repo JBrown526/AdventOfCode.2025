@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2025.Solvers;
+﻿namespace AdventOfCode2025.Models.Day2;
 
 public readonly record struct IdRange(long FirstId, long LastId)
 {
@@ -10,7 +10,7 @@ public readonly record struct IdRange(long FirstId, long LastId)
 
     public IEnumerable<long> GetIds()
     {
-        for (long id = FirstId; id < LastId; id++)
+        for (long id = FirstId; id <= LastId; id++)
         {
             yield return id;
         }

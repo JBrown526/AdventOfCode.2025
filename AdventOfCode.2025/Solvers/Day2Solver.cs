@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Models.Day2;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
@@ -16,7 +17,20 @@ public class Day2Solver : IAoCSolver
 
     public string Part1()
     {
-        return "D2P1";
+        IEnumerable<string> data = _dataProvider.GetData(Day);
+        IEnumerable<IdRange> idRanges = data.Select(IdRange.Parse);
+
+        long idSum = 0;
+        foreach (long id in idRanges.SelectMany(range => range.GetIds()))
+        {
+            string idString = id.ToString();
+            if (idString[(idString.Length / 2)..] == idString[..(idString.Length / 2)])
+            {
+                idSum += id;
+            }
+        }
+
+        return idSum.ToString();
     }
 
     public string Part2()
