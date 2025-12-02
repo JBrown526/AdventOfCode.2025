@@ -1,21 +1,23 @@
+using AdventOfCode2025.DataProviders;
 using AdventOfCode2025.Models.Day1;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
 
 public class Day1Solver : IAoCSolver
 {
-    private readonly IFileProvider _fileProvider;
+    private readonly IDataProvider _dataProvider;
 
     public int Day => 1;
 
-    public Day1Solver(IFileProvider fileProvider)
+    public Day1Solver([FromKeyedServices(DataProviderKind.LineBased)] IDataProvider dataProvider)
     {
-        _fileProvider = fileProvider;
+        _dataProvider = dataProvider;
     }
 
     public string Part1()
     {
-        IEnumerable<string> lines = _fileProvider.GetFile(Day);
+        IEnumerable<string> lines = _dataProvider.GetData(Day);
         IEnumerable<Instruction> instructions = lines.Select(Instruction.Parse);
 
         int zeroes = 0;
@@ -34,7 +36,7 @@ public class Day1Solver : IAoCSolver
 
     public string Part2()
     {
-        IEnumerable<string> lines = _fileProvider.GetFile(Day);
+        IEnumerable<string> lines = _dataProvider.GetData(Day);
         IEnumerable<Instruction> instructions = lines.Select(Instruction.Parse);
 
         int zeroes = 0;

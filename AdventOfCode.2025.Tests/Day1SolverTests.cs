@@ -1,4 +1,5 @@
-﻿using AdventOfCode2025.Models.Day1;
+﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Models.Day1;
 using AdventOfCode2025.Solvers;
 using FluentAssertions;
 using Moq;
@@ -7,7 +8,7 @@ namespace AdventOfCode2025.Tests;
 
 public class Day1SolverTests
 {
-    private readonly Mock<IFileProvider> _fileHelperMock = new();
+    private readonly Mock<IDataProvider> _fileHelperMock = new();
 
     [Theory]
     [InlineData("0", "L1", "R2")]
@@ -15,7 +16,7 @@ public class Day1SolverTests
     [InlineData("2", "R50", "R100")]
     public void Part1(string expected, params string[] turns)
     {
-        _fileHelperMock.Setup(fh => fh.GetFile(It.IsAny<int>()))
+        _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
         Day1Solver solver = new(_fileHelperMock.Object);
@@ -33,7 +34,7 @@ public class Day1SolverTests
     [InlineData("1", "R50")]
     public void Part2(string expected, params string[] turns)
     {
-        _fileHelperMock.Setup(fh => fh.GetFile(It.IsAny<int>()))
+        _fileHelperMock.Setup(fh => fh.GetData(It.IsAny<int>()))
             .Returns(turns);
 
         Day1Solver solver = new(_fileHelperMock.Object);

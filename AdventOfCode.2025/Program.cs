@@ -1,4 +1,5 @@
-﻿using AdventOfCode2025.Solvers;
+﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Solvers;
 using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
@@ -9,7 +10,7 @@ public static class Program
     public static void Main(string[] args)
     {
         IServiceCollection serviceCollection = new ServiceCollection();
-        serviceCollection.AddSingleton<IFileProvider, FileProvider>();
+        serviceCollection.AddKeyedSingleton<IDataProvider, LineBasedDataProvider>(DataProviderKind.LineBased);
         serviceCollection.AddKeyedSingleton<IAoCSolver, Day1Solver>(01);
 
         ServiceProvider provider = serviceCollection.BuildServiceProvider();
