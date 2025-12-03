@@ -11,59 +11,29 @@ public class BatteryBank
 
     public string MaximiseJoltage(int activationCount)
     {
-        char[] activated = new char[activationCount];
-        Array.Fill(activated, '0');
+        int surplus = _batteries.Length - activationCount;
+        Stack<char> activated = new(activationCount);
 
-        // TODO: re-use this logic for subsequent sizes?
-        // Regular flow - find the largest initial value
-        foreach (char joltage in _batteries[..^activationCount])
+        foreach (char joltage in _batteries)
         {
-            for (int i = 0; i < activated.Length; i++)
+            // If we still have to remove values, and the value on the top of the stack is smaller than the new value
+            // then drop the value and keep the incoming one
+            while (surplus > 0 && activated.Count > 0 && activated.Peek() < joltage)
             {
-                // Is this a new highest-order activation?
-                if (TryUpdateActivated(activated, joltage, i))
-                {
-                    break;
-                }
-
-                // It could still be a lower order activation
-                for (int j = i+1; j < activated.Length; j++)
-                {
-                    if (TryUpdateActivated(activated, joltage, j))
-                    {
-                        break;
-                    }
-                }
+                activated.Pop();
+                surplus--;
             }
+
+            activated.Push(joltage);
         }
 
-        // Ending Flow - check the remainder
-        for (int i = _batteries.Length - activationCount; i < _batteries.Length; i++)
+        // If we still have a surplus, drop the last values, they will by definition be smaller
+        while (activated.Count > activationCount)
         {
-            char joltage = _batteries[i];
-            int activatedIndex = i - (_batteries.Length - activationCount);
-
-            if (TryUpdateActivated(activated, joltage, activatedIndex))
-            {
-                // As we're dealing with the last of the batteries, we now can just take the remainder directly
-                Array.Copy(_batteries, i, activated, activatedIndex, activated.Length - activatedIndex);
-                break;
-            }
+            activated.Pop();
         }
 
-        return new string(activated);
-    }
-
-    private static bool TryUpdateActivated(char[] activated, char joltage, int index)
-    {
-        if (joltage > activated[index])
-        {
-            activated[index] = joltage;
-            // Reset all subsequent values
-            Array.Fill(activated, '0', index + 1, activated.Length - index - 1);
-            return true;
-        }
-
-        return false;
+        // The biggest numbers are on the bottom of the stack, so we need to reverse it
+        return new string(activated.Reverse().ToArray());
     }
 }
