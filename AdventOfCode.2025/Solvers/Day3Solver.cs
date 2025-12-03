@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Models.Day3;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
@@ -18,7 +19,7 @@ public class Day3Solver : IAoCSolver
     {
         IEnumerable<string> data = _dataProvider.GetData(Day);
 
-        int totalJoltage = 0;
+        long totalJoltage = 0;
         foreach (string line in data)
         {
             char highestFirst = '0';
@@ -45,7 +46,7 @@ public class Day3Solver : IAoCSolver
                 highestSecond = line[^1];
             }
 
-            totalJoltage += int.Parse(new string([highestFirst, highestSecond]));
+            totalJoltage += long.Parse([highestFirst, highestSecond]);
         }
 
         return totalJoltage.ToString();
@@ -53,6 +54,16 @@ public class Day3Solver : IAoCSolver
 
     public string Part2()
     {
-        return "D3P2";
+        IEnumerable<string> data = _dataProvider.GetData(Day);
+        IEnumerable<BatteryBank> banks = data.Select(line => new BatteryBank(line));
+
+        long totalJoltage = 0;
+        foreach (BatteryBank batteryBank in banks)
+        {
+            string joltage = batteryBank.MaximiseJoltage(12);
+            totalJoltage += long.Parse(joltage);
+        }
+
+        return totalJoltage.ToString();
     }
 }
