@@ -12,13 +12,14 @@ public static class Program
         IServiceCollection serviceCollection = new ServiceCollection();
 
         // Register data providers
-        serviceCollection.AddKeyedSingleton<IDataProvider, LineOnlyDataProvider>(DataProviderKind.LineOnly);
+        serviceCollection.AddKeyedSingleton<IDataProvider, LineDelimitedDataProvider>(DataProviderKind.LineDelimited);
         serviceCollection.AddKeyedSingleton<IDataProvider, CommaSeparatedLineDataProvider>(
             DataProviderKind.CommaSeparatedLine);
 
         // Register solvers
         serviceCollection.AddKeyedSingleton<IAoCSolver, Day1Solver>(01);
         serviceCollection.AddKeyedSingleton<IAoCSolver, Day2Solver>(02);
+        serviceCollection.AddKeyedSingleton<IAoCSolver, Day3Solver>(03);
 
         ServiceProvider provider = serviceCollection.BuildServiceProvider();
 
