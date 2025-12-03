@@ -12,7 +12,7 @@ public static class Program
         IServiceCollection serviceCollection = new ServiceCollection();
 
         // Register data providers
-        serviceCollection.AddKeyedSingleton<IDataProvider, LineOnlyDataProvider>(DataProviderKind.LineOnly);
+        serviceCollection.AddKeyedSingleton<IDataProvider, LineDelimitedDataProvider>(DataProviderKind.LineDelimited);
         serviceCollection.AddKeyedSingleton<IDataProvider, CommaSeparatedLineDataProvider>(
             DataProviderKind.CommaSeparatedLine);
 
