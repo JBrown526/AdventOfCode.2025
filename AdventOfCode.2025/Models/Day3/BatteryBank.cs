@@ -26,7 +26,7 @@ public class BatteryBank
                     break;
                 }
 
-                // It could still be a lower order activation, let it
+                // It could still be a lower order activation
                 for (int j = i+1; j < activated.Length; j++)
                 {
                     if (TryUpdateActivated(activated, joltage, j))
