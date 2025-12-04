@@ -10,7 +10,16 @@ public class Day4Tests
     private readonly Mock<IDataProvider> _dataProviderMock = new();
 
     [Theory]
-    [InlineData("D4P1", "TODO")]
+    [InlineData("5", "..@@.@@@@.")]
+    [InlineData("1", "@@@.@.@.@@")]
+    [InlineData("1", "@@@@@.@.@@")]
+    [InlineData("0", "@.@@@@..@.")]
+    [InlineData("2", "@@.@@@@.@@")]
+    [InlineData("0", ".@@@@@@@.@")]
+    [InlineData("0", ".@.@.@.@@@")]
+    [InlineData("1", "@.@@@.@@@@")]
+    [InlineData("0", ".@@@@@@@@.")]
+    [InlineData("3", "@.@.@@@.@.")]
     public void Part1(string expected, params string[] inputs)
     {
         _dataProviderMock.Setup(dp => dp.GetData(3)).Returns(inputs);
@@ -21,7 +30,16 @@ public class Day4Tests
     }
 
     [Theory]
-    [InlineData("D4P2", "TODO")]
+    [InlineData("D4P2", "..@@.@@@@.")]
+    [InlineData("D4P2", "@@@.@.@.@@")]
+    [InlineData("D4P2", "@@@@@.@.@@")]
+    [InlineData("D4P2", "@.@@@@..@.")]
+    [InlineData("D4P2", "@@.@@@@.@@")]
+    [InlineData("D4P2", ".@@@@@@@.@")]
+    [InlineData("D4P2", ".@.@.@.@@@")]
+    [InlineData("D4P2", "@.@@@.@@@@")]
+    [InlineData("D4P2", ".@@@@@@@@.")]
+    [InlineData("D4P2", "@.@.@@@.@.")]
     public void Part2(string expected, params string[] inputs)
     {
         _dataProviderMock.Setup(dp => dp.GetData(3)).Returns(inputs);
