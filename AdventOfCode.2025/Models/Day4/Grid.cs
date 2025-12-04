@@ -20,7 +20,11 @@ public class Grid<T> : IEnumerable<T>
     /// Index into the grid, starting from the top left corner.
     /// </summary>
     /// <param name="coordinate">The cell coordinate.</param>
-    public T this[Coordinate coordinate] => _grid[coordinate.Y][coordinate.X];
+    public T this[Coordinate coordinate]
+    {
+        get => _grid[coordinate.Y][coordinate.X];
+        set => _grid[coordinate.Y][coordinate.X] = value;
+    }
 
     /// <summary>
     /// Get the values of the adjacent cells to this one.
@@ -31,7 +35,7 @@ public class Grid<T> : IEnumerable<T>
         {
             for (int xModifier = -1; xModifier <= 1; xModifier++)
             {
-                Coordinate adjacentCell =  new(cell.X + xModifier, cell.Y + yModifier);
+                Coordinate adjacentCell = new(cell.X + xModifier, cell.Y + yModifier);
 
                 // If x or y is off the grid, skip them. Also skip if we are on the cell itself
                 if (adjacentCell.IsOutOfBounds(0, Columns, 0, Rows) || (xModifier == 0 && yModifier == 0))

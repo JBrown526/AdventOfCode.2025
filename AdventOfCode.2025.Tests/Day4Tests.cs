@@ -49,16 +49,7 @@ public class Day4Tests
     }
 
     [Theory]
-    [InlineData("0", "..", "..")]
-    [InlineData("1", "@.", "..")]
-    [InlineData("2", "@@", "..")]
-    [InlineData("2", "@.", "@.")]
-    [InlineData("2", "@.", ".@")]
-    [InlineData("3", "@@", "@.")]
-    [InlineData("3", "@@", ".@")]
-    [InlineData("3", "@.", "@@")]
-    [InlineData("4", "@@", "@@")]
-    [InlineData("D4P2", "..@@.@@@@.", "@@@.@.@.@@", "@@@@@.@.@@", "@.@@@@..@.", "@@.@@@@.@@", ".@@@@@@@.@",
+    [InlineData("43", "..@@.@@@@.", "@@@.@.@.@@", "@@@@@.@.@@", "@.@@@@..@.", "@@.@@@@.@@", ".@@@@@@@.@",
         ".@.@.@.@@@",
         "@.@@@.@@@@", ".@@@@@@@@.", "@.@.@@@.@.")]
     public void Part2(string expected, params string[] inputs)
