@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2025.DataProviders;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
 
@@ -8,7 +9,7 @@ public class Day4Solver : IAoCSolver
 
     public int Day => 4;
 
-    public Day4Solver(IDataProvider dataProvider)
+    public Day4Solver([FromKeyedServices(DataProviderKind.LineDelimited)] IDataProvider dataProvider)
     {
         _dataProvider = dataProvider;
     }
@@ -22,4 +23,9 @@ public class Day4Solver : IAoCSolver
     {
         return "D4P2";
     }
+}
+
+public class ForkliftAccess
+{
+    private byte access
 }
