@@ -21,20 +21,10 @@ public class Day4Solver : IAoCSolver
         IEnumerable<string> lines = _dataProvider.GetData(Day);
         Grid<char> grid = new(lines);
 
-        long accessible = 0;
-        foreach (Coordinate coordinate in grid.GetCoordinates())
-        {
-            if (grid[coordinate] != '@')
-            {
-                continue;
-            }
-
-            IEnumerable<char> adjacentValues = grid.GetAdjacentValues(coordinate);
-            if (adjacentValues.Count(value => value == '@') < 4)
-            {
-                accessible++;
-            }
-        }
+        long accessible = grid.GetCoordinates()
+            .Where(coordinate => grid[coordinate] == '@')
+            .Select(coordinate => grid.GetAdjacentValues(coordinate))
+            .Count(adjacent => adjacent.Count(value => value == '@') < 4);
 
         return accessible.ToString();
     }
