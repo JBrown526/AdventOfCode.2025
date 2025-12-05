@@ -1,5 +1,5 @@
 ﻿using AdventOfCode2025.DataProviders;
-using AdventOfCode2025.Models.Day2;
+using AdventOfCode2025.Models.Common;
 using AdventOfCode2025.Solvers;
 using FluentAssertions;
 using Moq;
