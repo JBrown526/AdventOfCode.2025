@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Models.Day4;
 using AdventOfCode2025.Solvers;
 using FluentAssertions;
 using Moq;
@@ -29,5 +30,16 @@ public class Day6Tests
         Day6Solver solver = new(_dataProviderMock.Object);
 
         solver.Part2().Should().Be(expected);
+    }
+
+    [Fact]
+    public void GridTranspose()
+    {
+        Grid<char> original = new(["12", "34"]);
+        Grid<char> expected = new(["31", "42"]);
+
+        Grid<char> transposed = Grid<char>.CreateTransposed(original);
+
+        transposed.Should().BeEquivalentTo(expected);
     }
 }

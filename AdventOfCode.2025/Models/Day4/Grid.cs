@@ -26,6 +26,23 @@ public class Grid<T> : IEnumerable<T>
         set => _grid[coordinate.Y][coordinate.X] = value;
     }
 
+    public static Grid<T> CreateTransposed(Grid<T> grid)
+    {
+        var transposedGrid = new T[grid.Columns][];
+
+        for (int i = 0; i < grid.Rows; i++)
+        {
+            for (int j = 0; j < grid.Columns; j++)
+            {
+                // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+                transposedGrid[j] ??= new T[grid.Rows];
+                transposedGrid[j][i] = grid._grid[i][j];
+            }
+        }
+
+        return new Grid<T>(transposedGrid);
+    }
+
     /// <summary>
     /// Get the values of the adjacent cells to this one.
     /// </summary>
@@ -58,6 +75,9 @@ public class Grid<T> : IEnumerable<T>
             }
         }
     }
+
+    public IEnumerable<T> GetRow(int row) => _grid[row];
+    public IEnumerable<T> GetColumn(int column) => _grid.Select(line => line[column]);
 
     public IEnumerator<T> GetEnumerator()
     {
