@@ -44,8 +44,14 @@ public class Day5Solver : IAoCSolver
         // id ranges are separated from IDs by an empty string
         int splitIndex = data.IndexOf("");
 
-        IEnumerable<IdRange> ranges = data[..splitIndex].Select(IdRange.Parse).Merge();
+        IEnumerable<IdRange> idRanges = data[..splitIndex].Select(IdRange.Parse).Merge();
 
-        return ranges.SelectMany(r => r.GetIds()).LongCount().ToString();
+        long validIds = 0;
+        foreach (IdRange idRange in idRanges)
+        {
+            validIds += idRange.LastId - idRange.FirstId + 1;
+        }
+
+        return validIds.ToString();
     }
 }

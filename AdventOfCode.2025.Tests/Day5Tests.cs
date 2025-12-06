@@ -25,7 +25,7 @@ public class Day5Tests
     }
 
     [Theory]
-    [InlineData("", "3-5", "10-14", "16-20", "12-18", "", "1", "5", "8", "11", "17", "32")]
+    [InlineData("14", "3-5", "10-14", "16-20", "12-18", "", "1", "5", "8", "11", "17", "32")]
     public void Part2(string expected, params string[] turns)
     {
         _dataProviderMock.Setup(fh => fh.GetData(5)).Returns(turns);
