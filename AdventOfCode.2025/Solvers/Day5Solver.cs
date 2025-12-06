@@ -23,9 +23,9 @@ public class Day5Solver : IAoCSolver
 
         IEnumerable<IdRange> parsedRanges = data[..splitIndex].Select(IdRange.Parse);
         IEnumerable<long> checkIds = data[(splitIndex + 1)..].Select(long.Parse);
-        
+
         List<IdRange> coalescedRanges = parsedRanges.Merge().ToList();
-        
+
         long inRange = 0;
         foreach (long checkId in checkIds)
         {
@@ -40,6 +40,12 @@ public class Day5Solver : IAoCSolver
 
     public string Part2()
     {
-        return "D5P2";
+        string[] data = _dataProvider.GetData(Day).ToArray();
+        // id ranges are separated from IDs by an empty string
+        int splitIndex = data.IndexOf("");
+
+        IEnumerable<IdRange> ranges = data[..splitIndex].Select(IdRange.Parse).Merge();
+
+        return ranges.SelectMany(r => r.GetIds()).LongCount().ToString();
     }
 }

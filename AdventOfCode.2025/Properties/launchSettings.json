@@ -3,7 +3,7 @@
   "profiles": {
     "AdventOfCode.2025 Day/Part": {
       "commandName": "Project",
-      "commandLineArgs": "-d 5 -p 1"
+      "commandLineArgs": "-d 5 -p 2"
     }
   }
 }
