@@ -5,6 +5,7 @@ using FluentAssertions;
 using Moq;
 using Xunit.Abstractions;
 using Xunit.Sdk;
+using Range = Moq.Range;
 
 namespace AdventOfCode2025.Tests;
 
@@ -32,6 +33,19 @@ public class Day5Tests
         Day5Solver solver = new(_dataProviderMock.Object);
 
         solver.Part2().Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData(false, "1-3", 0)]
+    [InlineData(true, "1-3", 1)]
+    [InlineData(true, "1-3", 2)]
+    [InlineData(true, "1-3", 3)]
+    [InlineData(false, "1-3", 4)]
+    public void IdRangeContains(bool expected, string rangeString, long searchValue)
+    {
+        IdRange range = IdRange.Parse(rangeString);
+
+        range.Contains(searchValue).Should().Be(expected);
     }
 
     [Theory]
@@ -76,6 +90,15 @@ public class Day5Tests
                 Input = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
                 Expected = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
             },
+            new TestCaseIdRangeMerge
+            {
+                Description = "Mixed ranges",
+                Input =
+                [
+                    new IdRange(1, 2), new IdRange(2, 5), new IdRange(6, 7), new IdRange(7, 11), new IdRange(15, 20)
+                ],
+                Expected = [new IdRange(1, 5), new IdRange(6, 11), new IdRange(15, 20)]
+            }
         ];
     }
 
