@@ -39,7 +39,10 @@ public static class IdRangeExtensions
                 first = idRange.FirstId;
             }
 
-            last = idRange.LastId;
+            if (last <= idRange.LastId)
+            {
+                last = idRange.LastId;
+            }
         }
 
         // Return the remaining range

@@ -98,6 +98,12 @@ public class Day5Tests
                     new IdRange(1, 2), new IdRange(2, 5), new IdRange(6, 7), new IdRange(7, 11), new IdRange(15, 20)
                 ],
                 Expected = [new IdRange(1, 5), new IdRange(6, 11), new IdRange(15, 20)]
+            },
+            new TestCaseIdRangeMerge
+            {
+                Description = "Shrinking range",
+                Input = [new IdRange(1, 10), new IdRange(4, 6), new IdRange(8, 11)],
+                Expected = [new IdRange(1, 11)]
             }
         ];
     }
