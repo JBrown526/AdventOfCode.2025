@@ -20,7 +20,7 @@ public class Day6Solver : IAoCSolver
         IEnumerable<string> data = _dataProvider.GetData(Day);
         var worksheetLines = data.Select(line =>
             line.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries));
-        CephalapodWorksheet worksheet = new(worksheetLines);
+        IncorrectCephalapodWorksheet worksheet = new(worksheetLines);
 
         long sum = 0;
         for (int i = 0; i < worksheet.NumberOfColumns; i++)
@@ -37,13 +37,13 @@ public class Day6Solver : IAoCSolver
     }
 }
 
-public class CephalapodWorksheet
+public class IncorrectCephalapodWorksheet
 {
     private readonly Grid<string> _worksheet;
 
     public int NumberOfColumns => _worksheet.Columns;
 
-    public CephalapodWorksheet(IEnumerable<IEnumerable<string>> worksheetLines)
+    public IncorrectCephalapodWorksheet(IEnumerable<IEnumerable<string>> worksheetLines)
     {
         _worksheet = new Grid<string>(worksheetLines);
     }
