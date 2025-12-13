@@ -37,7 +37,7 @@ public class Day7Tests
     }
 
     [Theory]
-    [InlineData("TODO",
+    [InlineData("40",
         ".......S.......",
         "...............",
         ".......^.......",

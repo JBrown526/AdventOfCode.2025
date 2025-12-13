@@ -26,6 +26,9 @@ public class Day7Solver : IAoCSolver
 
     public string Part2()
     {
-        return "D7P2";
+        Grid<char> grid = new(_dataProvider.GetData(Day));
+        Manifold manifold = new(grid);
+
+        return manifold.CountPossibleVisits().ToString();
     }
 }
