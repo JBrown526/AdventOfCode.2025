@@ -56,57 +56,51 @@ public class Day5Tests
         result.Should().BeEquivalentTo(testCase.Expected);
     }
 
-    public static TheoryData<TestCaseIdRangeMerge> GetDataForIdRangeMerge()
-    {
-        return
-        [
-            new TestCaseIdRangeMerge
-            {
-                Description = "Single ID",
-                Input = [new IdRange(1, 5)],
-                Expected = [new IdRange(1, 5)],
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Overlapping range",
-                Input = [new IdRange(1, 5), new IdRange(3, 8)],
-                Expected = [new IdRange(1, 8)],
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Non-overlapping range",
-                Input = [new IdRange(1, 5), new IdRange(8, 10)],
-                Expected = [new IdRange(1, 5), new IdRange(8, 10)],
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Multiple overlapping ranges",
-                Input = [new IdRange(1, 5), new IdRange(3, 8), new IdRange(7, 10)],
-                Expected = [new IdRange(1, 10)],
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Multiple non-overlapping ranges",
-                Input = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
-                Expected = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Mixed ranges",
-                Input =
-                [
-                    new IdRange(1, 2), new IdRange(2, 5), new IdRange(6, 7), new IdRange(7, 11), new IdRange(15, 20)
-                ],
-                Expected = [new IdRange(1, 5), new IdRange(6, 11), new IdRange(15, 20)]
-            },
-            new TestCaseIdRangeMerge
-            {
-                Description = "Shrinking range",
-                Input = [new IdRange(1, 10), new IdRange(4, 6), new IdRange(8, 11)],
-                Expected = [new IdRange(1, 11)]
-            }
-        ];
-    }
+    public static TheoryData<TestCaseIdRangeMerge> GetDataForIdRangeMerge() =>
+    [
+        new()
+        {
+            Description = "Single ID",
+            Input = [new IdRange(1, 5)],
+            Expected = [new IdRange(1, 5)],
+        },
+        new()
+        {
+            Description = "Overlapping range",
+            Input = [new IdRange(1, 5), new IdRange(3, 8)],
+            Expected = [new IdRange(1, 8)],
+        },
+        new()
+        {
+            Description = "Non-overlapping range",
+            Input = [new IdRange(1, 5), new IdRange(8, 10)],
+            Expected = [new IdRange(1, 5), new IdRange(8, 10)],
+        },
+        new()
+        {
+            Description = "Multiple overlapping ranges",
+            Input = [new IdRange(1, 5), new IdRange(3, 8), new IdRange(7, 10)],
+            Expected = [new IdRange(1, 10)],
+        },
+        new()
+        {
+            Description = "Multiple non-overlapping ranges",
+            Input = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
+            Expected = [new IdRange(1, 5), new IdRange(8, 10), new IdRange(13, 17)],
+        },
+        new()
+        {
+            Description = "Mixed ranges",
+            Input = [new IdRange(1, 2), new IdRange(2, 5), new IdRange(6, 7), new IdRange(7, 11), new IdRange(15, 20)],
+            Expected = [new IdRange(1, 5), new IdRange(6, 11), new IdRange(15, 20)]
+        },
+        new()
+        {
+            Description = "Shrinking range",
+            Input = [new IdRange(1, 10), new IdRange(4, 6), new IdRange(8, 11)],
+            Expected = [new IdRange(1, 11)]
+        }
+    ];
 
     public class TestCaseIdRangeMerge : IXunitSerializable
     {
