@@ -9,8 +9,6 @@ public abstract class DataProviderBase : IDataProvider
 {
     public abstract IEnumerable<string> GetData(int day);
 
-    protected static string GetFilePath(int day)
-    {
-        return Path.Combine("inputs", $"day{day:D2}.txt");
-    }
+    protected static string GetFilePath(int day) =>
+        Path.Combine(AppContext.BaseDirectory, "inputs", $"day{day:D2}.txt");
 }

@@ -4,8 +4,6 @@ using AdventOfCode2025.Solvers;
 using FluentAssertions;
 using Moq;
 using Xunit.Abstractions;
-using Xunit.Sdk;
-using Range = Moq.Range;
 
 namespace AdventOfCode2025.Tests;
 

@@ -1,4 +1,4 @@
-﻿using AdventOfCode2025.Models.Day4;
+﻿using AdventOfCode2025.Models.Common;
 
 namespace AdventOfCode2025.Models.Day6;
 

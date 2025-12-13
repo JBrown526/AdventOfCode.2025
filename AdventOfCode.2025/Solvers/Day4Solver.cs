@@ -1,7 +1,6 @@
 ﻿using AdventOfCode2025.DataProviders;
-using AdventOfCode2025.Models.Day4;
+using AdventOfCode2025.Models.Common;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics;
 
 namespace AdventOfCode2025.Solvers;
 
