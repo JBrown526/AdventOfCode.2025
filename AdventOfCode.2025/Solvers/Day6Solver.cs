@@ -36,9 +36,7 @@ public class Day6Solver : IAoCSolver
         IEnumerable<string> data = _dataProvider.GetData(Day);
         CephalopodWorksheet worksheet = new(data);
 
-        var problems = worksheet.GetProblems().ToArray();
-
-        long result = problems.Sum(sp => sp.Solve());
+        long result = worksheet.GetProblems().Sum(sp => sp.Solve());
 
         return result.ToString();
     }
