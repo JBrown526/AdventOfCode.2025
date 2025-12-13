@@ -76,6 +76,17 @@ public class Grid<T> : IEnumerable<T>
         }
     }
 
+    public Grid<T> GetSubGrid(Coordinate topLeft, Coordinate bottomRight)
+    {
+        var subGrid = new T[bottomRight.Y - topLeft.Y + 1][];
+        for (int y = topLeft.Y; y <= bottomRight.Y; y++)
+        {
+            subGrid[y - topLeft.Y] = _grid[y].Skip(topLeft.X).Take(bottomRight.X - topLeft.X + 1).ToArray();
+        }
+
+        return new Grid<T>(subGrid);
+    }
+
     public IEnumerable<T> GetRow(int row) => _grid[row];
     public IEnumerable<T> GetColumn(int column) => _grid.Select(line => line[column]);
 
@@ -84,8 +95,5 @@ public class Grid<T> : IEnumerable<T>
         return _grid.SelectMany(line => line).GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
