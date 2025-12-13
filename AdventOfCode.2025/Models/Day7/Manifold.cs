@@ -59,4 +59,51 @@ public class Manifold
 
         return splits;
     }
+
+    public long CountPossibleVisits()
+    {
+        int width = _grid.Columns;
+        char[] entryRow = _grid.GetRow(0).ToArray();
+
+        var inputVisits = new long[width];
+        inputVisits[Array.IndexOf(entryRow, 'S')] = 1;
+        var outputVisits = new long[width];
+
+        for (int i = 1; i < _grid.Rows; i++)
+        {
+            // copy over beams to the output in case there's no splitter
+            Array.Copy(inputVisits, outputVisits, width);
+
+            var row = _grid.GetRow(i).ToArray();
+
+            int splitterIndex = Array.IndexOf(row, '^');
+            while (splitterIndex != -1)
+            {
+                // if there's a beam coming in, split it in the output
+                if (inputVisits[splitterIndex] > 0)
+                {
+                    outputVisits[splitterIndex] = 0;
+
+                    if (splitterIndex > 0)
+                    {
+                        outputVisits[splitterIndex - 1] += inputVisits[splitterIndex];
+                    }
+
+                    if (splitterIndex < width - 1)
+                    {
+                        outputVisits[splitterIndex + 1] += inputVisits[splitterIndex];
+                    }
+                }
+
+                // remove splitter and look for the next one
+                row[splitterIndex] = '.';
+                splitterIndex = Array.IndexOf(row, '^');
+            }
+
+            // make the output beams the next input
+            Array.Copy(outputVisits, inputVisits, width);
+        }
+
+        return outputVisits.Sum();
+    }
 }
