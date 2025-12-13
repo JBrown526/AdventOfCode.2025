@@ -24,6 +24,7 @@ public class Day6Tests
 
     [Theory]
     [InlineData("3263827", "123 328  51 64 ", " 45 64  387 23 ", "  6 98  215 314", "*   +   *   +  ")]
+    [InlineData("19142939947", "6612 1   135 7   466 771 324", "1526 22   37 67  435 483 533", "583  538  68 787 299 951 918", "922  279  25 566 26  668  96", "+    *   *   *   *   +   +  ")]
     public void Part2(string expected, params string[] input)
     {
         _dataProviderMock.Setup(dp => dp.GetData(6)).Returns(input);

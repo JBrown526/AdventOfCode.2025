@@ -17,7 +17,7 @@ public class CephalopodProblem
         char @operator = _problem[new Coordinate(0, _problem.Rows - 1)];
         Func<long, long, long> aggregationFunction = GetAggregationFunction(@operator);
 
-        long[] numbers = new long[_problem.Rows - 1];
+        long[] numbers = new long[_problem.Columns];
         for (int i = _problem.Columns - 1; i >= 0; i--)
         {
             // skip the last row as it is the operator row
