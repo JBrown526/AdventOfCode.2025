@@ -31,7 +31,7 @@ public class Day7Tests
     {
         _dataProviderMock.Setup(dp => dp.GetData(7)).Returns(input);
 
-        Day6Solver solver = new(_dataProviderMock.Object);
+        Day7Solver solver = new(_dataProviderMock.Object);
 
         solver.Part1().Should().Be(expected);
     }
@@ -58,7 +58,7 @@ public class Day7Tests
     {
         _dataProviderMock.Setup(dp => dp.GetData(7)).Returns(input);
 
-        Day6Solver solver = new(_dataProviderMock.Object);
+        Day7Solver solver = new(_dataProviderMock.Object);
 
         solver.Part2().Should().Be(expected);
     }

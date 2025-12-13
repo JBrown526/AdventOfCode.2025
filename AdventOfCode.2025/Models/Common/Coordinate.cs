@@ -1,4 +1,4 @@
-namespace AdventOfCode2025.Models.Day4;
+namespace AdventOfCode2025.Models.Common;
 
 public readonly record struct Coordinate(int X, int Y)
 {

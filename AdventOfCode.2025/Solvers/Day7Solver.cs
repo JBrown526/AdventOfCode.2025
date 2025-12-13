@@ -1,4 +1,6 @@
 ﻿using AdventOfCode2025.DataProviders;
+using AdventOfCode2025.Models.Common;
+using AdventOfCode2025.Models.Day7;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdventOfCode2025.Solvers;
@@ -16,7 +18,10 @@ public class Day7Solver : IAoCSolver
 
     public string Part1()
     {
-        return "D7P1";
+        Grid<char> grid = new(_dataProvider.GetData(Day));
+        Manifold manifold = new(grid);
+
+        return manifold.CountSplits().ToString();
     }
 
     public string Part2()

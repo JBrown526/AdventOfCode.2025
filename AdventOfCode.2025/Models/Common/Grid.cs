@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace AdventOfCode2025.Models.Day4;
+namespace AdventOfCode2025.Models.Common;
 
 public class Grid<T> : IEnumerable<T>
 {
